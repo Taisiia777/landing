@@ -1,0 +1,11 @@
+<ng-template ngFor let-dish [ngForOf]="popularList">
+    <div class="p-shadow-1 popular-card-list p-grid p-nogutter p-mb-2">
+        <div class="p-col-3 p-text-center ">
+            <img [src]="dish.image" />
+        </div>
+        <div class="p-col-9">
+            <h1>{{dish.header}}</h1>
+            <span>{{dish.order}} заказов <b>{{dish.price}}₽</b> получено</span>
+        </div>
+    </div>
+</ng-template>

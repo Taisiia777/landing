@@ -1,0 +1,45 @@
+<!-- 
+<form class="p-shadow-1 p-px-5 p-py-2 p-my-5" style="background-color: white;"  [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <h4>Login Form</h4>
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12">
+            <label for="email">EmailId</label>
+            <input id="email" formControlName="email" type="text" pInputText>
+        </div>
+        <div class="p-field p-col-12">
+            <label for="password">Password</label>
+            <input id="password" formControlName="password" type="password" pInputText>
+        </div>
+    </div>
+
+    <div class="p-text-center">
+        <button pButton type="submit" [disabled]="loginForm.status ==='INVALID'" label="Login"
+            class="p-button-success p-col-12 p-mr-3 p-md-5 p-lg-5 p-my-3"></button>
+        <button pButton type="button" label="Clear" (click)="handleReset()"
+            class="p-button-danger p-col-12 p-md-5 p-lg-5 p-my-3"></button>
+        <div class="link" routerLink="/signup">or Create an account</div>
+    </div>
+</form> -->
+
+
+<form class="p-shadow-1 p-px-5 p-py-2 p-my-5" style="background-color: white;"  [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <h4>Форма входа</h4>
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12">
+            <label for="email">Электронная почта</label>
+            <input id="email" formControlName="email" type="text" pInputText>
+        </div>
+        <div class="p-field p-col-12">
+            <label for="password">Пароль</label>
+            <input id="password" formControlName="password" type="password" pInputText>
+        </div>
+    </div>
+
+    <div class="p-text-center">
+        <button pButton type="submit" [disabled]="loginForm.status ==='INVALID'" label="Войти"
+            class="p-button-success p-col-12 p-mr-3 p-md-5 p-lg-5 p-my-3"></button>
+        <button pButton type="button" label="Очистить" (click)="handleReset()"
+            class="p-button-danger p-col-12 p-md-5 p-lg-5 p-my-3"></button>
+        <div class="link" routerLink="/signup">или Создать учетную запись</div>
+    </div>
+</form>

@@ -1,0 +1,12 @@
+:host ::ng-deep .p-card-content{
+    padding: 0 !important;
+}
+
+:host ::ng-deep .right-card .p-card-subtitle{
+    margin-bottom: 1rem;
+}
+
+.coupon{
+    height: fit-content;
+    margin-bottom: 1rem;
+}

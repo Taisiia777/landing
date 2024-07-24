@@ -1,0 +1,12 @@
+<div class="card  p-grid p-nogutter" [style.background]="backColor">
+    <div class="p-col-3 p-text-center">
+        <img [src]="card.icon" />
+    </div>
+    <div class="p-col-6 overview-box-text">
+        <h1>{{card.title}}</h1>
+        <span [style.color]="subTitleColor">{{card.subTitle}}</span>
+    </div>
+    <div class="p-col-3 p-text-center">
+        <h4 [style.background]="countbgcolor">{{card.count}}</h4>
+    </div>
+</div>

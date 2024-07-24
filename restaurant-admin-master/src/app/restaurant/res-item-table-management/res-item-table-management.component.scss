@@ -1,0 +1,51 @@
+.image-icon{
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+.timing{
+    padding:3px 10px;
+    color: white;
+    width: fit-content;
+    background-color: orange;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.disable-row{
+    // background-color: dark !important;
+    opacity: 0.2;
+}
+
+:host ::ng-deep .p-column-filter{
+    width: 100%;
+}
+
+:host ::ng-deep  .p-sortable-column-icon {
+    font-size: 10px;
+    color:white !important;
+}
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    background: #3858CD;
+    color:white
+}
+
+.tool-button{
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+:host ::ng-deep .tool-button  .pi{
+    font-size: 12px;
+}
+
+:host ::ng-deep     .p-datatable .p-datatable-header {
+    color: #495057;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    padding: 8px 0;
+    background:white;
+    border:none
+}

@@ -1,0 +1,120 @@
+<!-- <h4>Регистрация</h4>
+<form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="p-shadow-1 p-px-5 p-py-2" style="background-color: white;">
+        <h4>Базовая информация</h4>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-12">
+                <label for="name">Firstname</label>
+                <input id="name" formControlName="name" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12">
+                <label for="city">City</label>
+                <input id="city" #city formControlName="city" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="ownerName">Owner Phone</label>
+                <input id="ownerName" formControlName="phone" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="ownerEmail">Owner Email</label>
+                <input id="ownerEmail" formControlName="email" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="password">Password</label>
+                <input id="password" formControlName="password" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="cpassword">Confirm Password</label>
+                <input id="cpassword" formControlName="cpassword" type="text" pInputText>
+            </div>
+        </div>
+    </div>
+    <p-fieldset class="p-px-5 p-py-2" legend="Additional Information" (onAfterToggle)="additionalToggle($event)"
+        [toggleable]="true" [collapsed]="true">
+        <h5>Location</h5>
+
+        <div formGroupName="location" class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-12">
+                <label for="city">Address/LandMark</label>
+                <input id="city" formControlName="address" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12">
+                <label for="city">MAP COORDINATES (DRAG THE MAP TO ADJUST PIN)</label>
+                <p-gmap *ngIf="mapLoading" [options]="options" [overlays]="overlays"
+                    (onOverlayDragEnd)="onMapDraging($event)" [style]="{'width':'100%','height':'320px'}"></p-gmap>
+            </div>
+        </div>
+    </p-fieldset>
+
+    <div class="p-text-center">
+        <button pButton type="submit" [disabled]="registerForm.status ==='INVALID'" label="Register"
+            class="p-button-success p-col-12 p-mr-3 p-md-5 p-lg-5 p-my-3"></button>
+        <button pButton type="button" label="Clear" (click)="handleReset()"
+            class="p-button-danger p-col-12 p-md-5 p-lg-5 p-my-3"></button>
+        <div class="link" routerLink="/login">Already have Login Page!</div>
+    </div>
+
+</form>
+<p-toast></p-toast> -->
+
+
+
+
+<h4>Регистрация</h4>
+<form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="p-shadow-1 p-px-5 p-py-2" style="background-color: white;">
+        <h4>Базовая информация</h4>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-12">
+                <label for="name">Имя</label>
+                <input id="name" formControlName="name" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12">
+                <label for="city">Город</label>
+                <input id="city" #city formControlName="city" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="ownerName">Телефон владельца</label>
+                <input id="ownerName" formControlName="phone" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="ownerEmail">Email владельца</label>
+                <input id="ownerEmail" formControlName="email" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="password">Пароль</label>
+                <input id="password" formControlName="password" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="cpassword">Подтвердите пароль</label>
+                <input id="cpassword" formControlName="cpassword" type="text" pInputText>
+            </div>
+        </div>
+    </div>
+    <p-fieldset class="p-px-5 p-py-2" legend="Дополнительная информация" (onAfterToggle)="additionalToggle($event)"
+        [toggleable]="true" [collapsed]="true">
+        <h5>Местоположение</h5>
+
+        <div formGroupName="location" class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-12">
+                <label for="city">Адрес/Ориентир</label>
+                <input id="city" formControlName="address" type="text" pInputText>
+            </div>
+            <div class="p-field p-col-12">
+                <label for="city">Координаты на карте (перетащите карту для настройки метки)</label>
+                <p-gmap *ngIf="mapLoading" [options]="options" [overlays]="overlays"
+                    (onOverlayDragEnd)="onMapDraging($event)" [style]="{'width':'100%','height':'320px'}"></p-gmap>
+            </div>
+        </div>
+    </p-fieldset>
+
+    <div class="p-text-center">
+        <button pButton type="submit" [disabled]="registerForm.status ==='INVALID'" label="Зарегистрироваться"
+            class="p-button-success p-col-12 p-mr-3 p-md-5 p-lg-5 p-my-3"></button>
+        <button pButton type="button" label="Очистить" (click)="handleReset()"
+            class="p-button-danger p-col-12 p-md-5 p-lg-5 p-my-3"></button>
+        <div class="link" routerLink="/login">Уже есть учетная запись? Войдите!</div>
+    </div>
+
+</form>
+<p-toast></p-toast>

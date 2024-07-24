@@ -1,0 +1,14 @@
+<div class="header" id="mynav">
+    <div (click)='display=true'>
+        <i class="pi pi-bars icon"></i>
+        <span>Tracker Application </span>
+    </div>
+
+    <div class="icon">
+        <span class="p-overlay-badge ">
+            <i class="pi pi-bell"></i>
+            <span class="p-badge p-badge-warning">2</span>
+        </span>
+    </div>
+</div>
+<app-nav-sidebar [display]="display" (closeDisplay)="display=$event" ></app-nav-sidebar>

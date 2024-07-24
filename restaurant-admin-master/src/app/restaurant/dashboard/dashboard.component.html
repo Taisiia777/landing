@@ -1,0 +1,28 @@
+<!-- <h3>Overview</h3> -->
+<div class="p-fluid p-grid p-mt-4">    
+    <div class="p-col-12 p-md-6 p-lg-4">
+        <app-overview-card [card]="overviewCard1"></app-overview-card>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-4">
+        <app-overview-card [card]="overviewCard2"></app-overview-card>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-4">
+        <app-overview-card [card]="overviewCard3"></app-overview-card>
+    </div>
+</div>
+<div class="p-fluid p-grid p-mt-4">  
+    <div class="p-col-12 p-lg-8" >
+        <p-card subheader="Sales Analytics"> 
+            <p-chart type="line" height="350" [data]="data" [options]="chartOptions"></p-chart>
+        </p-card>       
+    </div>
+    <div class="p-col-12 p-lg-4 right-card" >
+        <div class="coupon">
+            <app-overview-card  [card]="discountCard"></app-overview-card>    
+        </div>
+        <p-card subheader="Most Popular Items" > 
+           <hotel-popular-list></hotel-popular-list>
+        </p-card>       
+    </div>
+
+</div>

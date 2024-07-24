@@ -1,0 +1,10 @@
+<!-- <app-map-container></app-map-container> -->
+
+<div *ngIf="!message">
+    {{ message | async | json }}
+</div>
+
+<!-- <div class="p-mx-1 p-mx-md-4 p-mx-lg-6" > -->
+    <!-- <hotel-register></hotel-register> -->
+    <router-outlet></router-outlet>
+<!-- </div> -->

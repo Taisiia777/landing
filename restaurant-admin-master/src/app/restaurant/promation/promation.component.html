@@ -1,0 +1,64 @@
+<div class="promo">
+    <p-table #dt [value]="vouchers" styleClass="p-datatable-sm p-datatable-responsive-demo" sortMode="multiple" [rowHover]="true">
+        <ng-template pTemplate="caption">
+            <div class="table-header">
+                Promo code Management
+                <span style="float: right;vertical-align: middle;">
+                    <button pButton  label="Create" icon="pi pi-plus-circle" class="tool-button  p-button-warning"></button>
+                    <button pButton  label="Unavailable" icon="pi pi-lock" class="tool-button p-button-warning"></button>
+                    <button pButton  label="Available" icon="pi pi-unlock" class="tool-button p-button-warning"></button>
+                    <button pButton  label="Edit" icon="pi pi-pencil" class="tool-button  p-button-warning"></button>
+                    <button pButton  label="Delete" icon="pi pi-trash" class="tool-button p-button-danger"></button>
+                    
+                </span>
+            </div>
+        </ng-template>
+    
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th>
+                <th pSortableColumn="code">Promo Code <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="cartValue">Min Cart Value <p-sortIcon field="cartValue"></p-sortIcon>
+                </th>
+                <th pSortableColumn="value">Promo Value <p-sortIcon field="value"></p-sortIcon>
+                </th>
+                <th pSortableColumn="startAt">Start At <p-sortIcon field="startAt"></p-sortIcon>
+                </th>
+                <th pSortableColumn="endsAt">End At <p-sortIcon field="endsAt"></p-sortIcon>
+                </th>
+                <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td>
+                <td [ngClass]="product.status==='off'?'disable-row':''">
+                    <span class="p-column-title">Promo code</span>
+                    {{product.code}}</td>
+                <td [ngClass]="product.status==='off'?'disable-row':''">
+                    <span class="p-column-title">Cart value</span>
+                    {{product.cartValue| currency:'INR'}}</td>
+                <td [ngClass]="product.status==='off'?'disable-row':''">
+                    <span class="p-column-title">Promo value</span>
+                    {{product.value| currency:'INR'}}</td>
+                <td [ngClass]="product.status==='off'?'disable-row':''"
+                    [ngClass]="product.status==='off'?'disable-row':''">
+                    <span class="p-column-title">Start At</span>
+                    {{product.startAt |date}}</td>
+                <td [ngClass]="product.status==='off'?'disable-row':''">
+                    <span class="p-column-title">End At</span>
+                    {{product.endsAt |date}}</td>
+                <td>
+                    <div style="min-width: 100px;">
+                        <p-selectButton [options]="statusOptions" [ngModel]="product.status"></p-selectButton>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>
