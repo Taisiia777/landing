@@ -6,6 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireMessagingModule } from '@angular/fire/messaging'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { PromationComponent } from './restaurant/promation/promation.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAbYDLRgyocgh9DrfX9YyQv4ClEggFbNLE'
     }),
+    HttpClientModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,

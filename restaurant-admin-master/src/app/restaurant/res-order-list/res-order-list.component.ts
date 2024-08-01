@@ -1,50 +1,47 @@
+
+
+
 // import { Component, OnInit } from '@angular/core';
-// interface Receipe {
-//   image:string;
-//   name:string;
-//   comments:string;
-//   price:string;
-//   count:string
+// import { HttpClient } from '@angular/common/http';
+
+// interface Recipe {
+//   image: string;
+//   name: string;
+//   comments: string;
+//   price: string;
+//   count: string;
 // }
+
 // @Component({
 //   selector: 'res-order-list',
 //   templateUrl: './res-order-list.component.html',
 //   styleUrls: ['./res-order-list.component.scss']
 // })
 // export class ResOrderListComponent implements OnInit {
-//   receipeList:Receipe[];
+//   receipeList: Recipe[] = [];
 
-//   constructor() { }
+//   constructor(private http: HttpClient) { }
 
 //   ngOnInit(): void {
-//     this.receipeList=[
-//       {
-//         image:'assets/CBiryani.jpg',
-//         name:'Chicken Biryani',
-//         comments:'Without Masala,Without Onion, Extra Chilli',
-//         price:'1321',
-//         count:'2'
-//       },
-//       {
-//         image:'assets/Gobi.jpg',
-//         name:'Gopi Manchurian',
-//         comments:'',
-//         price:'142',
-//         count:'1'
-//       },
-//       {
-//         image:'assets/idli.jpg',
-//         name:'Idli',
-//         comments:'Extra Sambhar',
-//         price:'350',
-//         count:'4'
-//       },
-  
-//     ]
+//     this.fetchOrders();
 //   }
 
+//   fetchOrders(): void {
+//     this.http.get<any[]>('http://localhost:5000/api/orders')
+//       .subscribe(orders => {
+//         this.receipeList = orders.map(order => ({
+//           image: 'assets/placeholder.png', // Замена на фактическое изображение, если оно есть
+//           name: order.productName,
+//           comments: '', // Можете добавить комментарии, если они есть в данных
+//           price: order.productPrice.toString(),
+//           count: order.quantity.toString()
+//         }));
+//       });
+//   }
 // }
+
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 interface Recipe {
   image: string;
@@ -60,34 +57,33 @@ interface Recipe {
   styleUrls: ['./res-order-list.component.scss']
 })
 export class ResOrderListComponent implements OnInit {
-  receipeList: Recipe[];
+  receipeList: Recipe[] = [];
+  customerAddress: string = '';
+  customerPhone: string = '';
+  preparationTime: string = '00ч:25м:30с'; // Пример, можете изменить на динамическое значение
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.receipeList = [
-      {
-        image: 'assets/CBiryani.jpg',
-        name: 'Куриный Бирьяни',
-        comments: 'Без масалы, без лука, с дополнительным перцем чили',
-        price: '1321',
-        count: '2'
-      },
-      {
-        image: 'assets/Gobi.jpg',
-        name: 'Гоби Манчурия',
-        comments: '',
-        price: '142',
-        count: '1'
-      },
-      {
-        image: 'assets/idli.jpg',
-        name: 'Идли',
-        comments: 'С дополнительным самбаром',
-        price: '350',
-        count: '4'
-      },
-    ]
+    this.fetchOrders();
   }
 
+  fetchOrders(): void {
+    this.http.get<any[]>('http://localhost:5000/api/orders')
+      .subscribe(orders => {
+        if (orders.length > 0) {
+          const order = orders[0]; // Берем первый заказ для примера
+          this.customerAddress = order.customerAddress;
+          this.customerPhone = order.customerPhone;
+          
+          this.receipeList = orders.map(order => ({
+            image: 'assets/placeholder.png', // Замена на фактическое изображение, если оно есть
+            name: order.productName,
+            comments: '', // Можете добавить комментарии, если они есть в данных
+            price: order.productPrice.toString(),
+            count: order.quantity.toString()
+          }));
+        }
+      });
+  }
 }
