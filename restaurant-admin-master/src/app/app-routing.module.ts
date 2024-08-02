@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'login', component: RestaurantLoginComponent },
       { path: 'orders', component: ResOrderTakingComponent },
       {path:'manage-item',component:ResItemManagementComponent},
-      {path:'promo',component:PromationComponent}
+      // {path:'promo',component:PromationComponent}
     ]
   }
 

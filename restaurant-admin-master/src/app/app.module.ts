@@ -29,6 +29,9 @@ import { ResOrderListComponent } from './restaurant/res-order-list/res-order-lis
 import { ResItemManagementComponent } from './restaurant/res-item-management/res-item-management.component';
 import { ResItemTableManagementComponent } from './restaurant/res-item-table-management/res-item-table-management.component';
 import { PromationComponent } from './restaurant/promation/promation.component';
+import { AddProductComponent } from './restaurant/add-product/add-product.component';
+import { MessageService } from 'primeng/api';  // Импорт MessageService если используете PrimeNG
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,8 @@ import { PromationComponent } from './restaurant/promation/promation.component';
     ResOrderListComponent,
     ResItemManagementComponent,
     ResItemTableManagementComponent,
-    PromationComponent
+    PromationComponent,
+    AddProductComponent 
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,7 @@ import { PromationComponent } from './restaurant/promation/promation.component';
     AppRoutingModule,
     FormsModule, ReactiveFormsModule
   ],
-  providers: [MessagingService],
+  providers: [MessagingService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

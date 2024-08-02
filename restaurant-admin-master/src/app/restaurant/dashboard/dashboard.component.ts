@@ -106,17 +106,17 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.overviewCard1 = {
       icon: './assets/foodicon.png',
-      title: 'Заказы в ожидании',
-      subTitle: '2 новых за последний час',
-      count: '532',
+      title: 'Заказы за последний час',
+      subTitle: '',
+      count: '',
       tertColor: '#EA5167'
       // bgColor:'linear-gradient(256deg, #65afc4 0%, #88c0d0 100%)'
     }
     this.overviewCard2 = {
       icon: './assets/deliver-food.png',
-      title: 'Доставленные заказы',
-      subTitle: '5 новых за последний час',
-      count: '234',
+      title: 'Заказы за день',
+      subTitle: '',
+      count: '',
       bgColor: "linear-gradient(256deg, #f2c260 0%, #ebcb8b 100%)",
       tertColor: '#88c0d0',
       secColor: '#fcf5e8'
@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
     this.overviewCard3 = {
       icon: './assets/sales.png',
       title: 'Общий доход',
-      subTitle: '2500 - онлайн, 2757 - наличные',
+      subTitle: '',
       count: '10К',
       bgColor: "linear-gradient(256deg, #8fb56f 0%, #a3be8c 100%)",
       tertColor: '#F8E390',

@@ -14,7 +14,8 @@ export class NavSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = [{
-      items: [{
+      items: [
+        {
         label: 'Dashboard',
         icon: 'pi pi-home',
         routerLink: ['/'],
@@ -32,14 +33,14 @@ export class NavSidebarComponent implements OnInit {
           this.closeDisplay.emit(false);
         }
       },
-      {
-        label: 'Promation',
-        icon: 'pi pi-money-bill',
-        routerLink: ['/promo'],
-        command: () => {
-          this.closeDisplay.emit(false);
-        }
-      },
+      // {
+      //   label: 'Promation',
+      //   icon: 'pi pi-money-bill',
+      //   routerLink: ['/promo'],
+      //   command: () => {
+      //     this.closeDisplay.emit(false);
+      //   }
+      // },
       {
         label: 'Item',
         icon: 'pi pi-tag',

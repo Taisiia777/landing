@@ -1,3 +1,4 @@
+
 // import { Component, OnInit, ViewChild } from '@angular/core';
 
 // @Component({
@@ -6,72 +7,77 @@
 //   styleUrls: ['./res-item-table-management.component.scss']
 // })
 // export class ResItemTableManagementComponent implements OnInit {
-//   products:any[]
-//   statusOptions:any;
-//   statusFilter:any;
-//   @ViewChild('dt') tableData:any;
+//   products: any[]
+//   statusOptions: any;
+//   statusFilter: any;
+//   displayAddProductDialog: boolean = false;
+
+//   @ViewChild('dt') tableData: any;
 //   constructor() { }
 
 //   ngOnInit(): void {
-//     this.statusFilter =[{
-//       label:'Available',
-//       value:'on'
+//     this.statusFilter = [{
+//       label: 'Доступно',
+//       value: 'on'
 //     },
 //     {
-//       label:'Unavailable',
-//       value:'off'
+//       label: 'Недоступно',
+//       value: 'off'
 //     }
 //   ]
-//     this.products=[
+//     this.products = [
 //       {
-//         image:'assets/idli.jpg',
-//         name:'Idli',
-//         category:'Tiffen',
-//         cuisine:'Sounth Indian',
-//         price:'23',
-//         count:'4',
-//         status:'off'
-//     },
-//     {
-//       image:'assets/CBiryani.jpg',
-//       name:'Chicken Biryani',
-//       category:'Biruani',
-//       cuisine:'Sounth Indian',
-//       price:'232',
-//       count:'4',
-//       status:'on'
-//     },
-//     {
-//       image:'assets/Gobi.jpg',
-//       name:'Gopi Manchurian',
-//       cuisine:'North Indian',
-//       category:'Appatizers',
-//         price:'421',
-//         count:'4',
-//         status:'on'
-//     },
-//   ]
-//     this.statusOptions=[
-//       {
-//         // label:'Available',
-//         icon: 'pi pi-unlock',
-//         value:'on'
+//         image: 'assets/idli.jpg',
+//         name: 'Идли',
+//         category: 'Завтрак',
+//         cuisine: 'Южноиндийская кухня',
+//         price: '23',
+//         count: '4',
+//         status: 'off'
 //       },
 //       {
-//         // label:'Unavailable',
-//         icon:'pi pi-lock',
-//         value:'off'
+//         image: 'assets/CBiryani.jpg',
+//         name: 'Куриный Бирьяни',
+//         category: 'Бирьяни',
+//         cuisine: 'Южноиндийская кухня',
+//         price: '232',
+//         count: '4',
+//         status: 'on'
+//       },
+//       {
+//         image: 'assets/Gobi.jpg',
+//         name: 'Гоби Манчурия',
+//         category: 'Закуски',
+//         cuisine: 'Североиндийская кухня',
+//         price: '421',
+//         count: '4',
+//         status: 'on'
+//       },
+//     ]
+//     this.statusOptions = [
+//       {
+//         // label: 'Доступно',
+//         icon: 'pi pi-unlock',
+//         value: 'on'
+//       },
+//       {
+//         // label: 'Недоступно',
+//         icon: 'pi pi-lock',
+//         value: 'off'
 //       }
 //     ]
 //   }
-
-//   handleFilterStatus($event){
-   
-//     this.tableData.filter($event.value.map(el=>el.value),'status','in')
+  
+//   showAddProductDialog() {
+//     this.displayAddProductDialog = true;
+//   }
+//   handleFilterStatus($event) {
+//     this.tableData.filter($event.value.map(el => el.value), 'status', 'in')
 //   }
 
 // }
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ProductService } from '../../product.service';  // Убедитесь, что путь правильный
 
 @Component({
   selector: 'res-item-table-management',
@@ -79,67 +85,45 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./res-item-table-management.component.scss']
 })
 export class ResItemTableManagementComponent implements OnInit {
-  products: any[]
+  products: any[] = [];
   statusOptions: any;
   statusFilter: any;
+  displayAddProductDialog: boolean = false;
+
   @ViewChild('dt') tableData: any;
-  constructor() { }
+
+  constructor(private productService: ProductService) { }  // Инжектируем сервис
 
   ngOnInit(): void {
-    this.statusFilter = [{
-      label: 'Доступно',
-      value: 'on'
-    },
-    {
-      label: 'Недоступно',
-      value: 'off'
-    }
-  ]
-    this.products = [
-      {
-        image: 'assets/idli.jpg',
-        name: 'Идли',
-        category: 'Завтрак',
-        cuisine: 'Южноиндийская кухня',
-        price: '23',
-        count: '4',
-        status: 'off'
-      },
-      {
-        image: 'assets/CBiryani.jpg',
-        name: 'Куриный Бирьяни',
-        category: 'Бирьяни',
-        cuisine: 'Южноиндийская кухня',
-        price: '232',
-        count: '4',
-        status: 'on'
-      },
-      {
-        image: 'assets/Gobi.jpg',
-        name: 'Гоби Манчурия',
-        category: 'Закуски',
-        cuisine: 'Североиндийская кухня',
-        price: '421',
-        count: '4',
-        status: 'on'
-      },
-    ]
+    this.loadProducts();  // Загружаем продукты при инициализации
+
+    this.statusFilter = [
+      { label: 'Доступно', value: 'on' },
+      { label: 'Недоступно', value: 'off' }
+    ];
+
     this.statusOptions = [
-      {
-        // label: 'Доступно',
-        icon: 'pi pi-unlock',
-        value: 'on'
+      { icon: 'pi pi-unlock', value: 'on' },
+      { icon: 'pi pi-lock', value: 'off' }
+    ];
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe(
+      (data) => {
+        this.products = data;  // Привязываем данные к переменной products
       },
-      {
-        // label: 'Недоступно',
-        icon: 'pi pi-lock',
-        value: 'off'
+      (error) => {
+        console.error('Ошибка при загрузке продуктов', error);
       }
-    ]
+    );
+  }
+
+  showAddProductDialog() {
+    this.displayAddProductDialog = true;
   }
 
   handleFilterStatus($event) {
-    this.tableData.filter($event.value.map(el => el.value), 'status', 'in')
+    this.tableData.filter($event.value.map(el => el.value), 'status', 'in');
   }
-
 }

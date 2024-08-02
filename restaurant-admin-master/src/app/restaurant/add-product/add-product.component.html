@@ -1,0 +1,16 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <label for="productName">Название продукта</label>
+      <input pInputText id="productName" [(ngModel)]="product.productName" name="productName" required />
+    </div>
+    <div class="p-field">
+      <label for="productPrice">Цена продукта</label>
+      <input pInputText id="productPrice" [(ngModel)]="product.productPrice" name="productPrice" required />
+    </div>
+    <div class="p-field">
+      <label for="productDescription">Описание продукта</label>
+      <textarea pInputTextarea id="productDescription" [(ngModel)]="product.productDescription" name="productDescription"></textarea>
+    </div>
+    <button pButton type="submit" label="Добавить продукт"></button>
+  </form>
+  
