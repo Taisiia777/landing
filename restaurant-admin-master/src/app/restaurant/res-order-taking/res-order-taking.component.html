@@ -1,38 +1,92 @@
-<div class="p-fluid p-grid   p-my-3">
-    <div class="p-col-12 p-md-4 p-lg-3 sidebar p-px-3">
-        <div class="p-d-flex p-jc-between p-ai-center">
-            <h3>Список заказов</h3>
-            <i class="pi pi-list " style="font-size: 1.2rem"></i>
-        </div>
-        <div class="mergeButton">
-            <div class=" p-fluid p-grid p-text-center p-p-1">
-                <span class="p-col-4" (click)="selectedOrder='New'"
-                    [ngClass]="{'active':selectedOrder==='New'}">Новые</span>
-                <span class="p-col-4" (click)="selectedOrder='Prepare'"
-                    [ngClass]="{'active':selectedOrder==='Prepare'}">Готовятся</span>
-                <span class="p-col-4" (click)="selectedOrder='Deliver'"
-                    [ngClass]="{'active':selectedOrder==='Deliver'}">В доставке</span>
+
+
+
+<!-- 
+<div class="p-fluid p-grid p-my-3">
+  <div class="p-col-12 p-md-4 p-lg-3 sidebar p-px-3">
+    <div class="p-d-flex p-jc-between p-ai-center">
+      <h3>Список заказов</h3>
+      <i class="pi pi-list" style="font-size: 1.2rem"></i>
+    </div>
+    <div class="mergeButton">
+      <div class="p-fluid p-grid p-text-center p-p-1">
+        <span class="p-col-4" (click)="selectedOrder='New'"
+              [ngClass]="{'active':selectedOrder==='New'}">Новые</span>
+        <span class="p-col-4" (click)="selectedOrder='Prepare'"
+              [ngClass]="{'active':selectedOrder==='Prepare'}">Готовятся</span>
+        <span class="p-col-4" (click)="selectedOrder='Deliver'"
+              [ngClass]="{'active':selectedOrder==='Deliver'}">В доставке</span>
+      </div>
+    </div>
+    <div class="p-mt-3">
+      <ng-template ngFor let-summary [ngForOf]="orderSummary" let-first="first">
+        <div class="p-px-3 p-py-1 p-d-flex p-jc-between p-ai-center order-summary-item p-mb-2"
+             [ngClass]="first ? 'activeList' : ''">
+          <div>
+            <h5>{{summary.title}}</h5>
+            <i class="pi pi-clock text-muted p-pr-1"></i>
+            <span class="text-muted">{{summary.subTitle}}</span>
+            <div *ngFor="let product of summary.products">
+              <p>{{product.productName}} (x{{product.OrderProduct.quantity}}) - {{product.productPrice}}₽</p>
             </div>
+          </div>
+          <h3>{{summary.price}}</h3>
         </div>
-        <div class="p-mt-3">
-            <ng-template ngFor let-summary [ngForOf]="orderSummary" let-first="first">
-                <div class="p-px-3 p-py-1 p-d-flex  p-jc-between p-ai-center order-summary-item p-mb-2"
-                    [ngClass]="first?'activeList':''">
-                    <div>
-                        <h5>{{summary.title}}</h5>
-                        <i class="pi pi-clock text-muted p-pr-1"></i>
-                        <span class="text-muted">{{summary.subTitle}}</span>
-                    </div>
-                    <h3>{{summary.price}}</h3>
-                </div>
-                <div *ngIf="first" class="p-px-3 p-d-md-none">
-                    <res-order-list></res-order-list>
-                </div>
-            </ng-template>
+        <div *ngIf="first" class="p-px-3 p-d-md-none">
+          <res-order-list></res-order-list>
         </div>
+      </ng-template>
     </div>
-    <div class="p-d-none p-d-md-block p-col-12 p-md-8 p-lg-8 p-px-5"
-        style="background-color: white;border-radius: 10px;">
-        <res-order-list></res-order-list>
-    </div>
+  </div>
+  <div class="p-d-none p-d-md-block p-col-12 p-md-8 p-lg-8 p-px-5"
+       style="background-color: white; border-radius: 10px;">
+    <res-order-list></res-order-list>
+  </div>
 </div>
+<button (click)="exportToExcel()" class="p-button p-mt-3">Выгрузить заказы в Excel</button> -->
+
+
+
+<!-- res-order-taking.component.html -->
+
+<div class="p-fluid p-grid p-my-3">
+  <div class="p-col-12 p-md-4 p-lg-3 sidebar p-px-3">
+    <div class="p-d-flex p-jc-between p-ai-center">
+      <h3>Список заказов</h3>
+      <i class="pi pi-list" style="font-size: 1.2rem"></i>
+    </div>
+    <div class="mergeButton">
+      <div class="p-fluid p-grid p-text-center p-p-1">
+        <span class="p-col-4" (click)="selectedOrder='New'"
+              [ngClass]="{'active':selectedOrder==='New'}">Новые</span>
+        <span class="p-col-4" (click)="selectedOrder='Prepare'"
+              [ngClass]="{'active':selectedOrder==='Prepare'}">Готовятся</span>
+        <span class="p-col-4" (click)="selectedOrder='Deliver'"
+              [ngClass]="{'active':selectedOrder==='Deliver'}">В доставке</span>
+      </div>
+    </div>
+    <div class="p-mt-3">
+      <ng-template ngFor let-summary [ngForOf]="orderSummary" let-first="first">
+        <div class="p-px-3 p-py-1 p-d-flex p-jc-between p-ai-center order-summary-item p-mb-2"
+             [ngClass]="first ? 'activeList' : ''" (click)="selectOrder(summary)">
+          <div>
+            <h5>{{summary.title}}</h5>
+            <i class="pi pi-clock text-muted p-pr-1"></i>
+            <span class="text-muted">{{summary.subTitle}}</span>
+            <div *ngFor="let product of summary.products">
+              <p>{{product.productName}} (x{{product.OrderProduct.quantity}}) - {{product.productPrice}}₽</p>
+            </div>
+          </div>
+          <h3>{{summary.price}}</h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="p-d-none p-d-md-block p-col-12 p-md-8 p-lg-8 p-px-5"
+       style="background-color: white; border-radius: 10px;">
+    <res-order-list [order]="selectedOrderDetails"></res-order-list> <!-- Передаем выбранный заказ -->
+  </div>
+</div>
+
+<button (click)="exportToExcel()" class="p-button p-mt-3">Выгрузить заказы в Excel</button>

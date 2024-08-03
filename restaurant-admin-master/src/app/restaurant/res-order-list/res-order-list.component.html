@@ -1,43 +1,47 @@
-
+<!--  
  <div class="p-d-none p-d-md-block summary-list">
-     <ng-template ngFor let-receipe [ngForOf]="receipeList">
-         <div class="p-fluid p-grid p-pt-2 p-d-flex p-nogutter p-ai-center b-bottom">
-             <div class="p-lg-5 p-md-6 vertical">
-                 <img class="img-thumb" [src]="receipe.image" />
-                 <span class="subTitle">{{receipe.name}}</span>
-             </div>
-             <div class="p-lg-1 p-md-1">
-                 <span class="subTitle">x{{receipe.count}}</span>
-             </div>
-             <div class="p-lg-4 p-md-3">
-                 <span class="tertary-font">{{receipe.comments}}</span>
-             </div>
-             <div class="p-lg-2 p-md-2">
-                 <div class="subTitle">{{receipe.price}}₽</div>
-             </div>
-         </div>
-     </ng-template>
- </div>
- 
- <div class="p-d-md-none summary-list">
-     <ng-template ngFor let-receipe [ngForOf]="receipeList">
-         <div class="p-fluid p-grid p-py-2 p-nogutter b-bottom">
-             <div class="p-col-4 vertical">
-                 <img class="img-thumb" [src]="receipe.image" />
-             </div>
-             <div class="p-col-5">
-                 <div class="subTitle p-text-truncate">{{receipe.name}}</div>
-                 <div class="tertary-font">{{receipe.comments}}</div>
-             </div>
-             <div class="p-col-3 p-d-flex p-flex-column p-ai-end p-jc-around p-pr-2">
-                 <div class="subTitle">x{{receipe.count}}</div>
-                 <div class="subTitle">{{receipe.price}}₽</div>
-             </div>
-         </div>
-     </ng-template>
- </div>
- <div>
-     <!-- <h2 class="p-text-right p-mr-4">1000₽</h2> -->
-     <!-- <button pButton pRipple type="button" label="Начать приготовление" class="accept-Button"></button> -->
- </div>
- 
+    <ng-template ngFor let-receipe [ngForOf]="receipeList">
+        <div class="p-fluid p-grid p-pt-2 p-d-flex p-nogutter p-ai-center b-bottom">
+            <div class="p-lg-5 p-md-6 vertical">
+                <img class="img-thumb" [src]="receipe.image" />
+                <span class="subTitle">{{receipe.name}}</span>
+            </div>
+            <div class="p-lg-1 p-md-1">
+                <span class="subTitle">x{{receipe.count}}</span>
+            </div>
+            <div class="p-lg-4 p-md-3">
+                <span class="tertary-font">{{receipe.comments}}</span>
+            </div>
+            <div class="p-lg-2 p-md-2">
+                <div class="subTitle">{{receipe.price}}₽</div>
+            </div>
+        </div>
+    </ng-template>
+</div>
+
+
+  -->
+
+
+<!-- res-order-list.component.html -->
+
+<div class="p-d-none p-d-md-block summary-list" *ngIf="order">
+    <ng-template ngFor let-product [ngForOf]="order.products">
+      <div class="p-fluid p-grid p-pt-2 p-d-flex p-nogutter p-ai-center b-bottom">
+        <div class="p-lg-5 p-md-6 vertical">
+          <img class="img-thumb" src="assets/placeholder.png" />
+          <span class="subTitle">{{product.productName}}</span>
+        </div>
+        <div class="p-lg-1 p-md-1">
+          <span class="subTitle">x{{product.OrderProduct.quantity}}</span>
+        </div>
+        <div class="p-lg-4 p-md-3">
+          <span class="tertary-font">{{product.productDescription}}</span>
+        </div>
+        <div class="p-lg-2 p-md-2">
+          <div class="subTitle">{{product.productPrice}}₽</div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  
